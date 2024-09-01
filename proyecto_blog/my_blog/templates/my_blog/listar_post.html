@@ -1,0 +1,45 @@
+<!<!DOCTYPE html>
+<html>
+<head>
+    <title>Publicaciones</title>
+</head>
+<body>
+    <h1>Lista de Publicaciones</h1>
+
+    <!-- Formulario de búsqueda y filtro -->
+    <form method="get" action="{% url 'listar_post' %}">
+        <input type="text" name="q" placeholder="Buscar..." value="{{ query }}">
+        <input type="text" name="categoria" placeholder="Categoría..." value="{{ categoria }}">
+        <input type="date" name="fecha_publicacion" placeholder="Fecha de Publicación" value="{{ fecha_publicacion }}">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Enlace para crear una nueva publicación -->
+    <a href="{% url 'crear_post' %}">Crear Nueva Publicación</a>
+
+    <!-- Lista de publicaciones -->
+    <ul>
+        {% for post in pagina_obj %}
+            <li><a href="{% url 'detalle_post' post.pk %}">{{ post.titulo }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <!-- Paginación -->
+    <div>
+        {% if pagina_obj.has_previous %}
+            <a href="?pagina=1">&laquo; Primera</a>
+            <a href="?pagina={{ pagina_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span>Página {{ pagina_obj.number }} de {{ pagina_obj.paginator.num_pages }}</span>
+
+        {% if pagina_obj.has_next %}
+            <a href="?pagina={{ pagina_obj.next_page_number }}">Siguiente</a>
+            <a href="?pagina={{ pagina_obj.paginator.num_pages }}">Última &raquo;</a>
+        {% endif %}
+    </div>
+
+        <!-- Enlace para volver a la página de inicio -->
+    <a href="{% url 'home' %}">Volver a Inicio</a>
+</body>
+</html>

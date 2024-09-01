@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html></html>
+<head>
+
+    <title>Editar Publicación</title>
+</head>
+<body>
+    <h1>Editar Publicación</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Cambios</button>
+    </form>
+    <a href="{% url 'detalle_post' post.pk %}">Volver a la Publicacion</a>
+</body>
+</html>

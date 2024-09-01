@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.titulo }}</title>
+</head>
+
+<body>
+    <h1>{{ post.titulo }}</h1>
+    
+    <p>{{ post.contenido }}</p>
+    <p><strong>Autor:</strong>{{ post.autor }}</p>
+    <p></p><strong>Fecha de Publicacion: </strong> {{ fecha_publicacion }}</p>
+    <p></p><strong>Categoria: </strong> {{ post.categoria }}</p>
+    <p>Publicado el: {{ post.fecha_publicacion }}</p>
+    <a href="{% url 'editar_post' post.pk %}">Editar Publicación</a>
+    <a href="{% url 'listar_post' %}">Volver a la Lista de Publicaciones</a>
+</body>
+</html>
