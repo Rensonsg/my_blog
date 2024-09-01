@@ -5,7 +5,6 @@ from .forms import PostForm
 from django.db.models import Q
 
 def home(request):
-    return render(request, 'blog/home.html')
     return render(request, 'my_blog/home.html')
 
 def listar_post(request):
@@ -26,12 +25,10 @@ def listar_post(request):
     pagina_numero = request.GET.get('pagina')
     pagina_obj = paginator.get_page(pagina_numero)
 
-    return render(request, 'blog/listar_post.html', {'pagina_obj': pagina_obj})
     return render(request, 'my_blog/listar_post.html', {'pagina_obj': pagina_obj})
 
 def detalle_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/detalle_post.html', {'post': post})
     return render(request, 'my_blog/detalle_post.html', {'post': post})
 
 def crear_post(request):
@@ -42,7 +39,6 @@ def crear_post(request):
             return redirect('listar_post')
     else:
         form = PostForm()
-    return render(request, 'blog/crear_post.html', {'form': form})
     return render(request, 'my_blog/crear_post.html', {'form': form})
 
 def editar_post(request, pk):
@@ -54,7 +50,6 @@ def editar_post(request, pk):
             return redirect('detalle_post', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/editar_post.html', {'form': form, 'post':post})
     return render(request, 'my_blog/editar_post.html', {'form': form, 'post':post})
 
 # Create your views here.
